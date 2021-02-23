@@ -8,13 +8,13 @@ const Languages = [
 
 export const List = () => {
     return (
-        <>
+        <div>
             {
                 Languages.map((lang,index) => {
                     return <p key={index}>{lang}</p>
                 })
             }
-        </>
+        </div>
     )
 }
 
