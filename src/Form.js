@@ -6,11 +6,11 @@ export const Form = ({onAddLang}) => {
     const submitForm = (e) => {
         e.preventDefault();
         onAddLang(text);
+        setText('');
     }
-
     return (
         <div>
-            <h1>Add Language</h1>
+        <h1>add language</h1>
             <form onSubmit={submitForm}>
                 <input
                     type="text"
