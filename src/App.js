@@ -1,16 +1,20 @@
 import { useState } from 'react';
 import { List } from "./List";
+import { Form } from "./Form";
 
 function App() {
-  const [ description, setDescription ] = useState('Before Clicking!');
-  const changeDescription = () => {
-    setDescription('After Clicking!!');
-  }
+  const [ tab, setTab ] = useState('list');
   return (
     <div>
-      <List title={'Favorite Languages'}/>
-      <p>{ description }</p>
-      <button onClick={ changeDescription }>Button</button>
+    <header>
+      <ul>
+        <li onClick={() => setTab('list')}>List</li>
+        <li onClick={() => setTab('form')}>Form</li>
+      </ul>
+    </header>
+      {
+        tab === 'list' ?  <List/> : <Form/>
+      }
     </div>
   );
 }
