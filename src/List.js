@@ -1,12 +1,19 @@
-export const List = ({ title }) => {
+const Languages = [
+    'javascript',
+    'go',
+    'php',
+    'typescript',
+    'ruby'
+]
+
+export const List = () => {
     return (
         <>
-            <h1>{title}</h1>
-            <ul>
-                <li>Javascript</li>
-                <li>Typescript</li>
-                <li>PHP</li>
-            </ul>
+            {
+                Languages.map((lang,index) => {
+                    return <p key={index}>{lang}</p>
+                })
+            }
         </>
     )
 }
