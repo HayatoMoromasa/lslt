@@ -5,3 +5,11 @@ export const Languages = [
     'typescript',
     'ruby'
 ]
+
+export const getLanguages = () => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(Languages);
+        }, 1000);
+    })
+}
