@@ -1,9 +1,40 @@
 import { useState } from 'react';
 import { Button } from './components/button';
 import styled from 'styled-components';
+import { Modal } from './components/Modal';
+import { GlobalStyle } from './globalStyles';
 
 const Container = styled.div`
     padding: 12px 64px;
+`
+
+const ContainerHead = styled.div`
+    width: 100%;
+    display: flex;
+`
+
+const Heading1 = styled.h1`
+    margin: 0;
+`
+
+const ModalQuestion = styled.div`
+    position: relative;
+    margin-left: 10px;
+    &:before {
+        content: '?';
+        color: white;
+        position: absolute;
+        display: inline-block;
+        background: black;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        line-height: 20px;
+        cursor: pointer;
+    }
 `
 
 const Label = styled.label`
@@ -26,6 +57,11 @@ const FormButton = styled(Button)`/* スタイルを引き継ぎつつ更新で�
 
 export const Form = ({onAddLang}) => {
     const [ text, setText ] = useState('');
+    const [showModal, setShowModal] = useState(false);
+
+    const openModal = () => {
+      setShowModal(prev => !prev);
+    };
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -33,8 +69,12 @@ export const Form = ({onAddLang}) => {
         setText('');
     }
     return (
+        <>
         <Container>
-        <h1>add language</h1>
+            <ContainerHead>
+                <Heading1>add language</Heading1>
+                <ModalQuestion onClick={openModal}></ModalQuestion>
+            </ContainerHead>
             <form onSubmit={submitForm}>
             <div>
                 <Label>Languages</Label>
@@ -47,5 +87,8 @@ export const Form = ({onAddLang}) => {
                 <ButtonContainer><FormButton>Add</FormButton></ButtonContainer>
             </form>
         </Container>
+        <Modal showModal={showModal} setShowModal={setShowModal}/>
+        <GlobalStyle/>
+        </>
     )
 }
